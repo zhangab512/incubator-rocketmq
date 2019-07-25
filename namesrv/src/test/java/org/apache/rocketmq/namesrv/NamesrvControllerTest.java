@@ -16,6 +16,7 @@
  */
 package org.apache.rocketmq.namesrv;
 
+import org.apache.commons.lang3.time.DateUtils;
 import org.apache.rocketmq.common.namesrv.NamesrvConfig;
 import org.apache.rocketmq.remoting.netty.NettyServerConfig;
 import org.junit.Test;
@@ -32,7 +33,7 @@ public class NamesrvControllerTest {
      */
     @Test
     public void testRestart() throws Exception {
-        for (int i = 0; i < RESTARTNUM; i++) {
+     //   for (int i = 0; i < RESTARTNUM; i++) {
             NamesrvController namesrvController = new NamesrvController(
                 new NamesrvConfig(),
                 new NettyServerConfig()
@@ -40,7 +41,8 @@ public class NamesrvControllerTest {
             boolean initResult = namesrvController.initialize();
             assertThat(initResult).isEqualTo(true);
             namesrvController.start();
-            namesrvController.shutdown();
-        }
+          //  namesrvController.shutdown();
+        Thread.sleep(DateUtils.MILLIS_PER_DAY);
+      //  }
     }
 }
